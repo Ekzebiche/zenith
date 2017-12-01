@@ -1,0 +1,104 @@
+{% extends 'frontend/basic.twig' %}
+
+{% block content %}
+	{% autoescape false %}
+		{{ info_page.content }}
+	<script>
+	    $(document).ready(function() {
+	      var owl = $('.owl-carousel');
+	      owl.owlCarousel({
+	        nav: true,
+	        loop: true,
+	        responsive: {
+	          0: {
+	            items: 1
+	          },
+	          600: {
+	            items: 1
+	          },
+	          1000: {
+	            items: 1
+	          }
+	        }
+	      });
+	    });
+	    $("[data-fancybox]").fancybox({});
+  	</script>
+  	<section class="text-module">
+	    <div class="text-module__wrap text-module__first">
+	      <div class="text-module__block">
+	        <h2>{{ text_info_1.title }}</h2>
+	        <hr class="text-module__line"/>
+	      </div>
+	      <div class="text-module__block">
+	        {{ text_info_1.left }}
+	      </div>
+	      <div class="text-module__block">
+	        {{ text_info_1.right }}
+	      </div>
+	    </div>
+  	</section>
+
+	<!--<section class="text-module text-module__white">
+	    <div class="text-module__wrap">
+	      <div class="text-module__block">
+	        <h2>Блог</h2>
+	        <hr class="text-module__line"/>
+	      </div>
+	      {% for item in blog %}
+	      <div class="text-module__block">
+	        <p><a class="text-module__header-link" href="{{ base_url }}blog/reed/{{ item.id }}">{{ item.title }}</a></p>
+	        <a class="text-module__text-link" href="{{ base_url }}blog/reed/{{ item.id }}">Далее</a>
+	      </div>
+	      {% endfor %}
+	    </div>
+	</section> -->
+
+	<section class="text-module text-module__gray">
+    <div class="text-module__wrap">
+      <div class="text-module__block">
+        <h2>{{ text_info_2.title }}</h2>
+        <hr class="text-module__line"/>
+      </div>
+      <div class="text-module__block">
+        {{ text_info_2.left }}
+      </div>
+      <div class="text-module__block">
+        {{ text_info_2.right }}
+      </div>
+    </div>
+	</section>
+
+	<section class="slider owl-carousel owl-theme">
+    {% for item in sliders %}
+	    <div class="slider__wrap item">
+	      <img class="slider__photo" src="{{ base_url }}uploads/slider/{{ item.photo }}" alt="photo"/>
+	      <p class="slider__text">{{ item.text }}</p>
+	      <p class="slider__name">{{ item.fio }}</p>
+	      <p class="slider__company">{{ item.company }}</p>
+	    </div>
+    {% endfor %}
+	</section>
+
+	<section class="portfolio">
+	    <div class="portfolio__head">
+	      <h2 class="portfolio__header">Посмотреть портфолио</h2>
+	    </div>
+	    {% for key1, item in portfolio %}
+		    <div class="portfolio__block">
+		      <h3 class="portfolio__name">{{ item.title }}</h3>
+		      <a href="{{base_url}}uploads/project/{{ item['images'][0]['name']}}" data-fancybox="group{{ item.id }}" class="portfolio__link">{{ item.text }}
+		      </a>
+		      <img class="portfolio__img" src="{{base_url}}uploads/project/{{ item['images'][0]['name']}}" alt="{{ item.title }}"/>
+
+				{% for key2, img in portfolio[key1]['images'] %}
+					{% if key2 > 0 %}
+						<a href="{{base_url}}uploads/project/{{ img['name']}}" data-fancybox="group{{ item.id }}" style="display: none;">
+					{% endif %}
+				{% endfor %}
+
+		    </div>
+	    {% endfor %}
+  	</section>
+  	{% endautoescape %}
+{% endblock %}

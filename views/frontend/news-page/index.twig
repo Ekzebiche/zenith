@@ -1,0 +1,23 @@
+{% extends 'frontend/basic.twig' %}
+
+{% block menu %}
+	{% include 'frontend/_parts/menu/main_menu.twig' %}
+{% endblock %}
+{% block content %}
+	{% autoescape false %}
+	<section class="blog">
+		<div class="blog__head">
+	      <h2 class="blog__header">Блог</h2>
+	    </div>
+	    {% for item in blogs %}
+		    <div class="blog__block">
+		      <a href="{{ base_url }}blog/reed/{{ item.id }}" class="blog__link">
+		        <h3 class="blog__name">Блог</h3>
+		        <h3 class="blog__name blog__name_white">{{ item.title }}</h3>
+		      </a>
+		      <img class="blog__img" src="{{ base_url }}uploads/news/{{ item.folder }}/{{ item.image }}" alt="{{ item.title }}">
+		    </div>
+		{% endfor %}
+	</section>
+	{% endautoescape %}
+{% endblock %}

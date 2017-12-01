@@ -1,0 +1,25 @@
+{% extends 'frontend/basic.twig' %}
+
+{% block menu %}
+	{% include 'frontend/_parts/menu/main_menu.twig' %}
+{% endblock %}
+{% block content %}
+	{% autoescape false %}
+		{{ info_page.content }}
+	{% endautoescape %}
+		<section class="price">
+			{% for price in prices %}
+			<div class="price__wrap">
+				<div class="price__images">
+					<img class="price__img-top" src="{{ base_url }}uploads/prices/{{ price['images'][0]['name'] }}" alt="{{ price.title }}"/>
+					<img class="price__img-bottom" src="{{ base_url }}uploads/prices/{{ price['images'][1]['name'] }}" alt="{{ price.title }}"/>
+				</div>
+				{% autoescape false %}
+				<div class="price__text">
+					<h2 class="price__header">{{ price.title }}</h2>
+					{{ price.text }}</div>
+				{% endautoescape %}
+			</div>
+			{% endfor %}
+		</section>
+{% endblock %}

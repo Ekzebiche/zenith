@@ -1,0 +1,21 @@
+{% extends 'frontend/basic.twig' %}
+
+{% block menu %}
+	{% include 'frontend/_parts/menu/main_menu.twig' %}
+{% endblock %}
+{% block content %}
+	{% autoescape false %}
+	<section class="text-module">
+		<div class="text-module__wrap">
+			<div class="text-module__block">
+				<h2>Контакты</h2>
+			</div>
+			<div class="text-module__block">
+				{{ info_page.content }}
+			</div>
+			<div class="text-module__block">
+				<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab77d457ee0d224f95f5c8e6e272c46e99395db9e0b3643025108b6c3597da952&amp;width=400&amp;height=300&amp;lang=ru_RU&amp;scroll=true"></script>
+		</div>
+	</section>
+	{% endautoescape %}
+{% endblock %}
